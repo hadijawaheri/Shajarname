@@ -1,0 +1,25 @@
+{
+  "name": "shajarname",
+  "private": true,
+  "scripts": {
+    "dev:back": "pnpm --filter khandan-najaf-back run start:dev",
+    "dev:front": "pnpm --filter shajarnameh run dev",
+    "dev:bot": "pnpm --filter khandan-najaf-bot run dev",
+    "dev": "pnpm run dev:back & pnpm run dev:front",
+    "build:back": "pnpm --filter khandan-najaf-back run build",
+    "build:front": "pnpm --filter shajarnameh run build",
+    "build": "pnpm run build:back && pnpm run build:front",
+    "verify:layout": "npx tsx scripts/verify-layout.ts",
+    "fix:layout": "npx tsx scripts/fix-layout-db.ts",
+    "test:labels": "node --experimental-strip-types shajarname-front/lib/memberLabel.test.ts",
+    "test:export": "node --experimental-strip-types shajarname-front/lib/exportDiagram.test.ts",
+    "test:layout": "node --experimental-strip-types shajarname-front/lib/layout.test.ts",
+    "test:rbac": "node --experimental-strip-types scripts/smoke-rbac.ts",
+    "test:unit:back": "pnpm --filter khandan-najaf-back test -- roles.spec",
+    "start:back": "pnpm --filter khandan-najaf-back run start:prod",
+    "start:front": "pnpm --filter shajarnameh run start"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

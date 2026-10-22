@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Markazi+Text:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/* HeroUI Modal close uses physical `right` — overlaps titles in RTL.
+   Prefer logical end so X sits opposite the reading start. */
+@layer components {
+  .modal__close-trigger {
+    right: auto !important;
+    left: auto !important;
+    inset-inline-end: 1rem;
+    inset-inline-start: auto;
+  }
+
+  /* Timeline (and any slider forced LTR): keep fill/thumb edge caps physical. */
+  [dir="ltr"] .slider__track[data-fill-start="true"] {
+    border-inline-start-color: var(--accent);
+    border-inline-end-color: transparent;
+  }
+
+  [dir="ltr"] .slider__track[data-fill-end="true"] {
+    border-inline-end-color: var(--accent);
+  }
+}
+
+:root {
+  /* Heritage Najaf — warm light + deep teal */
+  --heritage-bg: #e8ece8;
+  --heritage-bg-deep: #dfe6e0;
+  --heritage-ink: #1a2e2a;
+  --heritage-muted: #5c6f6a;
+  --heritage-teal: #0b6b63;
+  --heritage-teal-soft: #147a71;
+  --heritage-gold: #9a7b4f;
+  --heritage-surface: rgba(255, 255, 255, 0.72);
+  --heritage-shadow: 0 10px 30px rgba(26, 46, 42, 0.08);
+  --heritage-shadow-soft: 0 4px 14px rgba(26, 46, 42, 0.06);
+
+  /* Back-compat aliases used across the app */
+  --neo-bg: var(--heritage-bg);
+  --neo-light: rgba(255, 255, 255, 0.85);
+  --neo-dark: rgba(120, 140, 130, 0.35);
+  --neo-inset-light: rgba(255, 255, 255, 0.9);
+  --neo-inset-dark: rgba(120, 140, 130, 0.28);
+  --accent: oklch(0.48 0.08 175);
+  --accent-foreground: oklch(0.99 0 0);
+}
+
+@theme {
+  --font-sans: "Vazirmatn", "Inter", sans-serif;
+  --font-display: "Markazi Text", "Vazirmatn", sans-serif;
+  --color-neo-bg: #e8ece8;
+  --color-neo-navy: #1a2e2a;
+  --color-neo-emerald: #0b6b63;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(11, 107, 99, 0.08), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(154, 123, 79, 0.07), transparent 50%),
+    var(--heritage-bg);
+  font-family: "Vazirmatn", "Inter", sans-serif;
+  color: var(--heritage-ink);
+}
+
+.font-display {
+  font-family: "Markazi Text", "Vazirmatn", sans-serif;
+}
+
+.surface-panel {
+  background: var(--heritage-surface);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--heritage-shadow);
+}
+
+.surface-inset {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 3px 3px 8px rgba(120, 140, 130, 0.22),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.75);
+}
+
+.surface-raised {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62));
+  box-shadow: var(--heritage-shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.surface-raised:hover {
+  box-shadow: 0 8px 22px rgba(26, 46, 42, 0.1);
+}
+
+/* Legacy neo classes — softer heritage mapping */
+.neo-embossed {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+  box-shadow: var(--heritage-shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  transition:
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-embossed-hover:hover {
+  box-shadow: 0 8px 22px rgba(26, 46, 42, 0.1);
+  transform: translateY(-1px);
+}
+
+.neo-embossed-active:active,
+.neo-embossed-active.active {
+  box-shadow: inset 3px 3px 8px rgba(120, 140, 130, 0.25);
+  transform: translateY(1px);
+}
+
+.neo-debossed {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    inset 3px 3px 8px rgba(120, 140, 130, 0.2),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.neo-inset-glow {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.canvas-grid {
+  background-image: radial-gradient(rgba(11, 107, 99, 0.14) 1.1px, transparent 1.1px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 107, 99, 0.28);
+  border-radius: 10px;
+}
+
+.svg-drop-shadow {
+  filter: drop-shadow(1px 2px 2px rgba(26, 46, 42, 0.12));
+}
+
+.privacy-blur {
+  backdrop-filter: blur(8px) saturate(120%);
+  background: rgba(232, 236, 232, 0.7);
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+.gen-line {
+  border-top: 1px dashed rgba(11, 107, 99, 0.2);
+}
+
+/* Tree card: admin actions only on hover/focus */
+.tree-card .tree-card-actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.tree-card:hover .tree-card-actions,
+.tree-card:focus-within .tree-card-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.role-chip {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(11, 107, 99, 0.1);
+  color: var(--heritage-teal);
+  border: 1px solid rgba(11, 107, 99, 0.18);
+}
+
+.role-chip-view {
+  background: rgba(154, 123, 79, 0.12);
+  color: #6e5635;
+  border-color: rgba(154, 123, 79, 0.25);
+}
+
+.role-chip-editor {
+  background: rgba(11, 107, 99, 0.14);
+  color: #0a5c55;
+  border-color: rgba(11, 107, 99, 0.28);
+}

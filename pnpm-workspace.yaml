@@ -1,0 +1,12 @@
+packages:
+  - "shajarname-back"
+  - "shajarname-front"
+  - "shajarname-bot"
+
+allowBuilds:
+  bcrypt: true
+  core-js: true
+  esbuild: true
+  puppeteer: true
+  sharp: true
+  unrs-resolver: true
